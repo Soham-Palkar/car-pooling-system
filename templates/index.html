@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>carpooling systemt</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="m"><h1 id="t">CARPOOLING SYSTEM</h1>
+        <form action="">
+            <div class="ride">
+               <a href="{{ url_for('ctride') }}"><button type="button" class="btn btn-primary btn-lg" id="crtride">Create Ride</button></a>
+<a href="{{ url_for('searide') }}"><button type="button" class="btn btn-secondary btn-lg" id="serride">Search Rides</button></a>
+            </div>
+        </form>
+        </div>
+    </div>
+</body>
+</html>

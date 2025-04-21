@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="m">
+            <h1>Your Rides</h1>
+          {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul style="color: green;">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    <script type="text/javascript">
+            setTimeout(function() {
+                window.location.href = "{{ url_for('index') }}";  // Redirect to the index page
+            }, 2000);  // Delay in milliseconds (1000ms = 1 seconds)
+          </script>
+  {% endif %}
+{% endwith %}
+
+{% if available_drivers %}
+<table border="1" cellpadding="5">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Phone</th>
+            <th>Vehicle No.</th>
+            <th>Vehicle Type</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for driver in available_drivers %}
+        <tr>
+            <td>{{ driver.name }}</td>
+            <td>{{ driver.pickup }}</td>
+            <td>{{ driver.phone }}</td>
+            <td>{{ driver.vh_no }}</td>
+            <td>{{ driver.vh_type }}</td>
+            <td>
+                <form action="{{ url_for('book_ride', driver_id=driver.Sno) }}" method="post">
+                    <button type="submit">Book Now</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>
+{% else %}
+<p style="color: rgb(24, 210, 21); font-style: italic; font-weight: 800;">Not Available</p>
+{% endif %}</div></div>
+</body>
+</html>
